@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Suivi des Colis</title>
+    <script>
+        function trackPackage() {
+            const colisId = document.getElementById('colis_id').value;
+            fetch(`http://127.0.0.1:5000/track_package/${colisId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerHTML = JSON.stringify(data, null, 2);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Suivi des Colis</h1>
+    <input type="text" id="colis_id" placeholder="Entrer l'ID du colis">
+    <button onclick="trackPackage()">Suivre</button>
+    <pre id="status"></pre>
+</body>
+</html>
